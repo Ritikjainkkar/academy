@@ -12,11 +12,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 
 app.use(shopRoutes);
-app.use(adminRoutes);
+app.use('/admin',adminRoutes);
 
 app.use('/',(req, res, next) => {
-  console.log('another middleware here')
-  res.send('<h1>Hello from Express</h1>')
+  res.status(404).send('<h1>PPage Not Found</h1>')
 })
 
 app.listen(3000);

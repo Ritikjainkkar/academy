@@ -1,13 +1,15 @@
+const path = require('path');
+
 const express = require('express');
-const routes = express.Router();
 
-routes.get('/add-product',(req, res, next) => {
-  res.send('<form method="POST" action="/admin/add-product"><input type="text" name="title"></input><button type="submit">click</button></button></form>')
-});
+const productsController = require('../controllers/products');
 
-routes.post('/add-product',(req, res, next) => {
-  console.log(req.body);
-  res.send('<h1>Thank you</h1>')
-});
+const router = express.Router();
 
-module.exports = routes;
+// /admin/add-product => GET
+router.get('/add-product', productsController.getAddProduct);
+
+// /admin/add-product => POST
+router.post('/add-product', productsController.postAddProduct);
+
+module.exports = router;
